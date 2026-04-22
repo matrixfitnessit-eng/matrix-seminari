@@ -76,12 +76,12 @@
     }
 
     h1 {
-      margin: 18px 0 14px;
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-    }
-
+  margin: 18px 0 14px;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
     .hero p {
       margin: 0;
       color: var(--muted);
@@ -287,7 +287,7 @@
     .registration-inner {
       background: var(--bg);
       border-radius: 31px;
-      padding: 34px;
+      padding: 40px;
     }
 
     .registration-top {
@@ -317,12 +317,13 @@
       margin-top: 20px;
   }
     .panel {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 22px;
-      max-width: 860px;
-    }
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 22px;
+  width: 100%;
+  max-width: none;
+}
 
     form { display: grid; gap: 16px; }
 
@@ -451,13 +452,17 @@
       .day-header { align-items: flex-start; flex-direction: column; }
     }
 
-    @media (max-width: 720px) {
-      .grid { grid-template-columns: 1fr; }
-      .row-2 { grid-template-columns: 1fr; }
-      .registration-inner { padding: 22px; }
-      .actions { flex-direction: column; }
-      .hero-inner { padding: 56px 0 42px; }
-    }
+   @media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr; }
+  .registration-inner { padding: 22px; }
+  .actions { flex-direction: column; }
+  .hero-inner { padding: 56px 0 42px; }
+
+  h1 {
+    white-space: normal;
+  }
+}
 
     .badge-static {
   display: inline-flex;
