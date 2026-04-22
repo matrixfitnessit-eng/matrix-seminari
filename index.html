@@ -541,6 +541,13 @@
   opacity: 1;
   text-decoration: underline;
 }
+    .sticky-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
   </style>
 </head>
 <body>
@@ -1045,5 +1052,8 @@ const rows = selected.map(seminar => ({
     </p>
   </div>
 </footer>
+  <a href="#registration-section" class="btn btn-primary sticky-cta">
+  Iscriviti ai seminari
+</a>
 </body>
 </html>
