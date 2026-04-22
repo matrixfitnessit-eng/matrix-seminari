@@ -857,11 +857,15 @@
 
     function addSeminar(id) {
   const strId = String(id);
-  if (!state.selectedSeminarIds.includes(strId)) {
+
+  if (state.selectedSeminarIds.includes(strId)) {
+    state.selectedSeminarIds = state.selectedSeminarIds.filter(item => item !== strId);
+  } else {
     state.selectedSeminarIds.push(strId);
-    renderPicker();
-    renderGrid();
   }
+
+  renderPicker();
+  renderGrid();
 }
     function openModal(id) {
       const seminar = seminars.find(item => item.id === id);
