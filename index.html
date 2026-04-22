@@ -857,14 +857,11 @@
 
     function addSeminar(id) {
   const strId = String(id);
-
-  if (state.selectedSeminarIds.includes(strId)) {
-    // 👉 se già selezionato → rimuove
-    state.selectedSeminarIds = state.selectedSeminarIds.filter(item => item !== strId);
-  } else {
-    // 👉 se non selezionato → aggiunge
+  if (!state.selectedSeminarIds.includes(strId)) {
     state.selectedSeminarIds.push(strId);
+    renderPicker();
   }
+}
 
   renderPicker();
   renderGrid(); // aggiorna anche i bottoni sopra
