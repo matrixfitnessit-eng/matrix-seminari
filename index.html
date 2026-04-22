@@ -860,12 +860,8 @@
   if (!state.selectedSeminarIds.includes(strId)) {
     state.selectedSeminarIds.push(strId);
     renderPicker();
+    renderGrid();
   }
-}
-
-  renderPicker();
-  renderGrid(); // aggiorna anche i bottoni sopra
-}
 }
     function openModal(id) {
       const seminar = seminars.find(item => item.id === id);
