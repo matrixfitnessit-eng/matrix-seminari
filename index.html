@@ -763,11 +763,11 @@
       });
 
       gridEl.querySelectorAll('[data-add]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          addSeminar(Number(btn.dataset.add));
-          document.getElementById('registration-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+  btn.addEventListener('click', () => {
+    addSeminar(Number(btn.dataset.add));
+  });
       });
+    
     }
 
     function renderPicker() {
@@ -868,7 +868,6 @@
       document.getElementById('modalAddBtn').addEventListener('click', () => {
         addSeminar(id);
         modal.classList.remove('open');
-        document.getElementById('registration-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     }
 
