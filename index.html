@@ -49,14 +49,6 @@
       max-width: 980px;
     }
 
-    .logo-mark {
-      display: inline-block;
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      margin-bottom: 18px;
-    }
-
     .badge {
       display: inline-flex;
       align-items: center;
@@ -426,17 +418,17 @@
 <body>
   <header class="hero">
     <div class="container hero-inner">
-<div style="text-align: center; margin-bottom: 25px;">
-  <img
-    src="matrix-logo.svg"
-    alt="Matrix Fitness"
-    style="
-      height: 30px;
-      width: auto;
-      display: inline-block;
-    "
-  />
-</div>
+      <div style="text-align: center; margin-bottom: 25px;">
+        <img
+          src="matrix-logo.svg"
+          alt="Matrix Fitness"
+          style="
+            height: 30px;
+            width: auto;
+            display: inline-block;
+          "
+        />
+      </div>
       <span class="badge red">Iscrizione Seminari Stand Matrix</span>
       <h1>Scopri il programma e registrati ai seminari</h1>
       <p>Scopri i seminari, approfondisci i contenuti e registrati in pochi secondi.</p>
@@ -532,25 +524,25 @@
                   <div class="selected-box" id="selectedBox" style="display:none;"></div>
 
                   <div style="display:grid; gap:12px; margin-top:4px;">
-  <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
-    <input type="checkbox" id="privacyConsent" required style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
-    <div style="font-size:13px; line-height:1.5; color:#b8b8b8;">
-      <label for="privacyConsent" style="cursor:pointer; display:inline;">
-        Acconsento al trattamento dei dati personali e confermo di aver letto la
-      </label>
-      <a href="https://www.iubenda.com/privacy-policy/94408855/legal" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:underline; font-weight:600;">Privacy Policy</a>.
-    </div>
-  </div>
+                    <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
+                      <input type="checkbox" id="privacyConsent" required style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
+                      <div style="font-size:13px; line-height:1.5; color:#b8b8b8;">
+                        <label for="privacyConsent" style="cursor:pointer; display:inline;">
+                          Acconsento al trattamento dei dati personali e confermo di aver letto la
+                        </label>
+                        <a href="https://www.iubenda.com/privacy-policy/94408855/legal" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:underline; font-weight:600;">Privacy Policy</a>.
+                      </div>
+                    </div>
 
-  <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
-    <input type="checkbox" id="newsletterConsent" style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
-    <label for="newsletterConsent" style="font-size:13px; line-height:1.5; color:#b8b8b8; cursor:pointer;">
-      Desidero ricevere aggiornamenti, novità e contenuti dal mondo Matrix Fitness.
-    </label>
-  </div>
-</div>
+                    <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
+                      <input type="checkbox" id="newsletterConsent" style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
+                      <label for="newsletterConsent" style="font-size:13px; line-height:1.5; color:#b8b8b8; cursor:pointer;">
+                        Desidero ricevere aggiornamenti, novità e contenuti dal mondo Matrix Fitness.
+                      </label>
+                    </div>
+                  </div>
 
-<button class="btn btn-primary" id="submitBtn" type="submit" disabled>Conferma iscrizione</button>
+                  <button class="btn btn-primary" id="submitBtn" type="submit" disabled>Conferma iscrizione</button>
                   <div class="alert-success" id="successAlert" style="display:none;">Iscrizione registrata correttamente.</div>
                 </form>
               </div>
@@ -804,7 +796,7 @@
     }
 
     async function sendRowsToGoogleSheets(rows) {
-      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('15vegOQd6UCgSUC1q6MD2YXyUvHal3v2DOVPPNsJFsOU')) return;
+      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('INCOLLA_QUI')) return;
 
       await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
         method: 'POST',
@@ -828,11 +820,10 @@
       if (!state.selectedSeminarIds.length) return;
 
       const selected = seminars.filter(seminar => state.selectedSeminarIds.includes(String(seminar.id)));
-
       const privacyConsent = document.getElementById('privacyConsent').checked;
-const newsletterConsent = document.getElementById('newsletterConsent').checked;
+      const newsletterConsent = document.getElementById('newsletterConsent').checked;
 
-const rows = selected.map(seminar => ({
+      const rows = selected.map(seminar => ({
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         phone: document.getElementById('phone').value,
