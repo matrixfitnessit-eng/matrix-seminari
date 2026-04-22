@@ -151,6 +151,22 @@
   font-weight: 600;
   color: #ffffff;
 }
+    .filters-container {
+  margin-bottom: 20px;
+}
+
+.filters-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.filters-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
     .chip {
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.06);
@@ -579,8 +595,10 @@
   <div class="search">
     <input id="searchInput" type="text" placeholder="Cerca per titolo, tema o relatore" />
   </div>
-  <div class="filters-wrap">
-    <div class="filters-label">Filtra per tema:</div>
+  <div class="filters-container">
+  <div class="filters-title">Esplora i seminari</div>
+  <div class="filters-subtitle">Filtra per tema</div>
+  <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
     <div class="filters" id="filters"></div>
   </div>
 </div>
