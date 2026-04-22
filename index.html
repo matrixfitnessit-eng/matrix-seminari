@@ -49,6 +49,14 @@
       max-width: 980px;
     }
 
+    .logo-mark {
+      display: inline-block;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
@@ -143,6 +151,37 @@
     .chip.active {
       background: var(--red);
       border-color: var(--red);
+    }
+
+    .day-sections {
+      display: grid;
+      gap: 30px;
+    }
+
+    .day-section {
+      display: grid;
+      gap: 16px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .day-count {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .grid {
@@ -404,6 +443,7 @@
 
     @media (max-width: 1100px) {
       .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .day-header { align-items: flex-start; flex-direction: column; }
     }
 
     @media (max-width: 720px) {
@@ -418,17 +458,17 @@
 <body>
   <header class="hero">
     <div class="container hero-inner">
-      <div style="text-align: center; margin-bottom: 25px;">
-        <img
-          src="matrix-logo.svg"
-          alt="Matrix Fitness"
-          style="
-            height: 30px;
-            width: auto;
-            display: inline-block;
-          "
-        />
-      </div>
+<div style="text-align: center; margin-bottom: 25px;">
+  <img
+    src="matrix-logo.svg"
+    alt="Matrix Fitness"
+    style="
+      height: 30px;
+      width: auto;
+      display: inline-block;
+    "
+  />
+</div>
       <span class="badge red">Iscrizione Seminari Stand Matrix</span>
       <h1>Scopri il programma e registrati ai seminari</h1>
       <p>Scopri i seminari, approfondisci i contenuti e registrati in pochi secondi.</p>
@@ -455,7 +495,7 @@
           </div>
           <div class="filters" id="filters"></div>
         </div>
-        <div class="grid" id="seminarsGrid"></div>
+        <div class="day-sections" id="seminarsGrid"></div>
       </div>
     </section>
 
@@ -524,25 +564,25 @@
                   <div class="selected-box" id="selectedBox" style="display:none;"></div>
 
                   <div style="display:grid; gap:12px; margin-top:4px;">
-                    <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
-                      <input type="checkbox" id="privacyConsent" required style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
-                      <div style="font-size:13px; line-height:1.5; color:#b8b8b8;">
-                        <label for="privacyConsent" style="cursor:pointer; display:inline;">
-                          Acconsento al trattamento dei dati personali e confermo di aver letto la
-                        </label>
-                        <a href="https://www.iubenda.com/privacy-policy/94408855/legal" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:underline; font-weight:600;">Privacy Policy</a>.
-                      </div>
-                    </div>
+  <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
+    <input type="checkbox" id="privacyConsent" required style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
+    <div style="font-size:13px; line-height:1.5; color:#b8b8b8;">
+      <label for="privacyConsent" style="cursor:pointer; display:inline;">
+        Acconsento al trattamento dei dati personali e confermo di aver letto la
+      </label>
+      <a href="https://www.iubenda.com/privacy-policy/94408855/legal" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:underline; font-weight:600;">Privacy Policy</a>.
+    </div>
+  </div>
 
-                    <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
-                      <input type="checkbox" id="newsletterConsent" style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
-                      <label for="newsletterConsent" style="font-size:13px; line-height:1.5; color:#b8b8b8; cursor:pointer;">
-                        Desidero ricevere aggiornamenti, novità e contenuti dal mondo Matrix Fitness.
-                      </label>
-                    </div>
-                  </div>
+  <div style="display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start; padding:14px 16px; border:1px solid rgba(255,255,255,0.08); border-radius:16px; background:rgba(255,255,255,0.03);">
+    <input type="checkbox" id="newsletterConsent" style="margin:2px 0 0; width:18px; height:18px; accent-color:#c1121f;" />
+    <label for="newsletterConsent" style="font-size:13px; line-height:1.5; color:#b8b8b8; cursor:pointer;">
+      Desidero ricevere aggiornamenti, novità e contenuti dal mondo Matrix Fitness.
+    </label>
+  </div>
+</div>
 
-                  <button class="btn btn-primary" id="submitBtn" type="submit" disabled>Conferma iscrizione</button>
+<button class="btn btn-primary" id="submitBtn" type="submit" disabled>Conferma iscrizione</button>
                   <div class="alert-success" id="successAlert" style="display:none;">Iscrizione registrata correttamente.</div>
                 </form>
               </div>
@@ -561,7 +601,7 @@
   </div>
 
   <script>
-    const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyZTIQI71Avm__9v4R0lnyRoiSHj4YsfHVqqWiXawOQbt5YLFwthDYNgUYg7e2wyjJj/exec';
+    const GOOGLE_SHEETS_WEBHOOK_URL = 'INCOLLA_QUI_URL_GOOGLE_APPS_SCRIPT';
     const STORAGE_KEY = 'matrix-seminar-registrations-html';
 
     const seminars = [
@@ -657,29 +697,51 @@
     function renderGrid() {
       const filtered = getFilteredSeminars();
       document.getElementById('hero-count').textContent = `${filtered.length} seminari`;
-      gridEl.innerHTML = filtered.map(seminar => `
-        <article class="card">
-          <div class="card-body">
-            <div class="topline">
-              <span class="badge">${escapeHtml(seminar.category)}</span>
-              <span class="small muted">#${seminar.id}</span>
+
+      const grouped = filtered.reduce((acc, seminar) => {
+        if (!acc[seminar.date]) acc[seminar.date] = [];
+        acc[seminar.date].push(seminar);
+        return acc;
+      }, {});
+
+      const orderedDates = Object.keys(grouped).sort((a, b) => parseDay(a) - parseDay(b));
+
+      gridEl.innerHTML = orderedDates.map(date => {
+        const items = grouped[date];
+        return `
+          <section class="day-section">
+            <div class="day-header">
+              <h2 class="day-title">${escapeHtml(date)}</h2>
+              <div class="day-count">${items.length} seminari</div>
             </div>
-            <h3 class="seminar-title">${escapeHtml(seminar.title)}</h3>
-            ${seminar.subtitle ? `<p class="muted small">${escapeHtml(seminar.subtitle)}</p>` : ''}
-            <div class="meta-list">
-              <div>${escapeHtml(seminar.date)}</div>
-              <div>${escapeHtml(seminar.time)}</div>
-              <div>${escapeHtml(seminar.area)}</div>
-              <div>${escapeHtml(seminar.speakers.map(s => s.name).join(', '))}</div>
+            <div class="grid">
+              ${items.map(seminar => `
+                <article class="card">
+                  <div class="card-body">
+                    <div class="topline">
+                      <span class="badge">${escapeHtml(seminar.category)}</span>
+                      <span class="small muted">#${seminar.id}</span>
+                    </div>
+                    <h3 class="seminar-title">${escapeHtml(seminar.title)}</h3>
+                    ${seminar.subtitle ? `<p class="muted small">${escapeHtml(seminar.subtitle)}</p>` : ''}
+                    <div class="meta-list">
+                      <div>${escapeHtml(seminar.date)}</div>
+                      <div>${escapeHtml(seminar.time)}</div>
+                      <div>${escapeHtml(seminar.area)}</div>
+                      <div>${escapeHtml(seminar.speakers.map(s => s.name).join(', '))}</div>
+                    </div>
+                    <div class="abstract-preview">${escapeHtml(seminar.abstract)}</div>
+                    <div class="actions">
+                      <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
+                      <button class="btn btn-secondary" data-add="${seminar.id}">Aggiungi</button>
+                    </div>
+                  </div>
+                </article>
+              `).join('')}
             </div>
-            <div class="abstract-preview">${escapeHtml(seminar.abstract)}</div>
-            <div class="actions">
-              <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
-              <button class="btn btn-secondary" data-add="${seminar.id}">Aggiungi</button>
-            </div>
-          </div>
-        </article>
-      `).join('');
+          </section>
+        `;
+      }).join('');
 
       gridEl.querySelectorAll('[data-details]').forEach(btn => {
         btn.addEventListener('click', () => openModal(Number(btn.dataset.details)));
@@ -796,7 +858,7 @@
     }
 
     async function sendRowsToGoogleSheets(rows) {
-      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('15vegOQd6UCgSUC1q6MD2YXyUvHal3v2DOVPPNsJFsOU')) return;
+      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('INCOLLA_QUI')) return;
 
       await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
         method: 'POST',
@@ -820,10 +882,11 @@
       if (!state.selectedSeminarIds.length) return;
 
       const selected = seminars.filter(seminar => state.selectedSeminarIds.includes(String(seminar.id)));
-      const privacyConsent = document.getElementById('privacyConsent').checked;
-      const newsletterConsent = document.getElementById('newsletterConsent').checked;
 
-      const rows = selected.map(seminar => ({
+      const privacyConsent = document.getElementById('privacyConsent').checked;
+const newsletterConsent = document.getElementById('newsletterConsent').checked;
+
+const rows = selected.map(seminar => ({
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         phone: document.getElementById('phone').value,
