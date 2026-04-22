@@ -569,7 +569,7 @@
   </div>
 
   <script>
-    const GOOGLE_SHEETS_WEBHOOK_URL = 'INCOLLA_QUI_URL_GOOGLE_APPS_SCRIPT';
+    const GOOGLE_SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyZTIQI71Avm__9v4R0lnyRoiSHj4YsfHVqqWiXawOQbt5YLFwthDYNgUYg7e2wyjJj/exec';
     const STORAGE_KEY = 'matrix-seminar-registrations-html';
 
     const seminars = [
@@ -804,7 +804,7 @@
     }
 
     async function sendRowsToGoogleSheets(rows) {
-      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('INCOLLA_QUI')) return;
+      if (!GOOGLE_SHEETS_WEBHOOK_URL || GOOGLE_SHEETS_WEBHOOK_URL.includes('15vegOQd6UCgSUC1q6MD2YXyUvHal3v2DOVPPNsJFsOU')) return;
 
       await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
         method: 'POST',
