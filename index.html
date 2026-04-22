@@ -283,6 +283,16 @@
     .btn-secondary:hover { background: rgba(255,255,255,0.06); }
     .btn:disabled { opacity: .5; cursor: not-allowed; }
 
+    .btn-secondary.selected {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+    .btn-secondary.selected:hover {
+    background: var(--red-hover);
+    }
+    
     .registration-wrap {
       border-radius: 32px;
       padding: 1px;
@@ -797,10 +807,9 @@
                     <div class="actions">
                       <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
                       <button
-                      class="btn ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'btn-added' : 'btn-secondary'}"
-                      data-add="${seminar.id}"
-                      >
-                      ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'Aggiunto ✓' : 'Aggiungi'}
+                      class="btn btn-secondary ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'selected' : ''}"
+                      data-add="${seminar.id}">
+                      ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'Selezionato ✓' : 'Seleziona'}
                       </button>
                     </div>
                   </div>
