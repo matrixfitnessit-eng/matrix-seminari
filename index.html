@@ -477,6 +477,16 @@
   color: var(--muted);
   cursor: default;
 }
+
+    .btn-added {
+  background: rgba(193, 18, 31, 0.16);
+  border: 1px solid rgba(193, 18, 31, 0.5);
+  color: #fff;
+}
+
+.btn-added:hover {
+  background: rgba(193, 18, 31, 0.22);
+}
   </style>
 </head>
 <body>
@@ -755,7 +765,12 @@
                     <div class="abstract-preview">${escapeHtml(seminar.abstract)}</div>
                     <div class="actions">
                       <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
-                      <button class="btn btn-secondary" data-add="${seminar.id}">Aggiungi</button>
+                      <button
+                      class="btn ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'btn-added' : 'btn-secondary'}"
+                      data-add="${seminar.id}"
+                      >
+                      ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'Aggiunto ✓' : 'Aggiungi'}
+                      </button>
                     </div>
                   </div>
                 </article>
@@ -823,23 +838,24 @@
     }
 
     function toggleSeminarSelection(id) {
-      const strId = String(id);
-      if (state.selectedSeminarIds.includes(strId)) {
-        state.selectedSeminarIds = state.selectedSeminarIds.filter(item => item !== strId);
-      } else {
-        state.selectedSeminarIds.push(strId);
-      }
-      renderPicker();
-    }
+  const strId = String(id);
+  if (state.selectedSeminarIds.includes(strId)) {
+    state.selectedSeminarIds = state.selectedSeminarIds.filter(item => item !== strId);
+  } else {
+    state.selectedSeminarIds.push(strId);
+  }
+  renderPicker();
+  renderGrid();
+}
 
     function addSeminar(id) {
-      const strId = String(id);
-      if (!state.selectedSeminarIds.includes(strId)) {
-        state.selectedSeminarIds.push(strId);
-        renderPicker();
-      }
-    }
-
+  const strId = String(id);
+  if (!state.selectedSeminarIds.includes(strId)) {
+    state.selectedSeminarIds.push(strId);
+    renderPicker();
+    renderGrid();
+  }
+}
     function openModal(id) {
       const seminar = seminars.find(item => item.id === id);
       if (!seminar) return;
