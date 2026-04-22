@@ -930,7 +930,7 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('open');
     });
-
+    console.log('seminari caricati:', seminars.length);
     renderFilters();
     renderGrid();
     renderPicker();
