@@ -66,6 +66,19 @@
       background: var(--red);
       border-color: transparent;
     }
+    
+    .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
 
     .badge-info {
       display: inline-flex;
@@ -930,7 +943,7 @@
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('open');
     });
-    console.log('seminari caricati:', seminars.length);
+
     renderFilters();
     renderGrid();
     renderPicker();
