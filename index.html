@@ -21,6 +21,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
@@ -66,19 +67,6 @@
       background: var(--red);
       border-color: transparent;
     }
-    
-    .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-}
 
     .badge-info {
       display: inline-flex;
@@ -108,7 +96,10 @@
       max-width: 760px;
     }
 
-    .hero-meta, .hero-actions, .registration-highlights, .selected-tags {
+    .hero-meta,
+    .hero-actions,
+    .registration-highlights,
+    .selected-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -285,7 +276,9 @@
       flex: 1;
     }
 
-    .btn-primary:hover { background: var(--red-hover); }
+    .btn-primary:hover {
+      background: var(--red-hover);
+    }
 
     .btn-secondary {
       background: transparent;
@@ -293,8 +286,14 @@
       color: #fff;
     }
 
-    .btn-secondary:hover { background: rgba(255,255,255,0.06); }
-    .btn:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
 
     .registration-wrap {
       border-radius: 32px;
@@ -340,7 +339,10 @@
       max-width: 860px;
     }
 
-    form { display: grid; gap: 16px; }
+    form {
+      display: grid;
+      gap: 16px;
+    }
 
     .row-2 {
       display: grid;
@@ -385,8 +387,18 @@
       flex-shrink: 0;
     }
 
-    .option-title { font-size: 14px; font-weight: 600; line-height: 1.4; }
-    .option-meta { font-size: 12px; color: var(--muted-2); margin-top: 4px; line-height: 1.4; }
+    .option-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .option-meta {
+      font-size: 12px;
+      color: var(--muted-2);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
 
     .selected-box {
       border: 1px solid var(--border);
@@ -417,7 +429,9 @@
       z-index: 999;
     }
 
-    .modal.open { display: flex; }
+    .modal.open {
+      display: flex;
+    }
 
     .modal-box {
       width: min(860px, 100%);
@@ -460,16 +474,36 @@
     .small { font-size: 13px; }
 
     @media (max-width: 1100px) {
-      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .day-header { align-items: flex-start; flex-direction: column; }
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .day-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 720px) {
-      .grid { grid-template-columns: 1fr; }
-      .row-2 { grid-template-columns: 1fr; }
-      .registration-inner { padding: 22px; }
-      .actions { flex-direction: column; }
-      .hero-inner { padding: 56px 0 42px; }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .registration-inner {
+        padding: 22px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .hero-inner {
+        padding: 56px 0 42px;
+      }
     }
   </style>
 </head>
@@ -480,21 +514,20 @@
         <img
           src="matrix-logo.svg"
           alt="Matrix Fitness"
-          style="
-            height: 30px;
-            width: auto;
-            display: inline-block;
-          "
+          style="height: 30px; width: auto; display: inline-block;"
         />
       </div>
+
       <span class="badge red">Iscrizione Seminari Stand Matrix</span>
       <h1>Scopri il programma e registrati ai seminari</h1>
       <p>Scopri i seminari, approfondisci i contenuti e registrati in pochi secondi.</p>
+
       <div class="hero-meta">
         <span class="badge-info">Programma completo</span>
-        <span class="badge-info">16 seminari</span>
+        <span class="badge-info" id="hero-count">16 seminari</span>
         <span class="badge-info">Stand Matrix - Educational Lounge - Pad. B1</span>
       </div>
+
       <div class="hero-actions">
         <a class="btn btn-primary" href="#registration-section">Iscriviti ai seminari</a>
         <span class="badge-info">Registrazione gratuita</span>
@@ -513,6 +546,7 @@
           </div>
           <div class="filters" id="filters"></div>
         </div>
+
         <div class="day-sections" id="seminarsGrid"></div>
       </div>
     </section>
@@ -525,6 +559,7 @@
               <span class="badge">Registrazione</span>
               <h2>Registrati a uno o più seminari</h2>
               <p>Seleziona le sessioni di tuo interesse e completa il modulo.</p>
+
               <div class="registration-highlights">
                 <span class="badge">Registrazione gratuita</span>
                 <span class="badge">Accesso a più sessioni</span>
@@ -625,17 +660,17 @@
     const seminars = [
       { id: 1, title: 'Pagamenti invisibili, impatti concreti: la rivoluzione che il fitness non può ignorare', date: '28 maggio 2026', time: '10:30 – 11:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Business', speakers: [{ name: 'Guizzetti', role: 'Socio fondatore, UP Soluzioni', image: 'GUIZZETTI.jpg', bio: 'Laureato in Economia alla Bocconi, sviluppa il proprio percorso nella GDO tra marketing, pianificazione commerciale e web. Oggi è socio fondatore di UP Soluzioni, dove affianca aziende e operatori dei settori sport, fitness e benessere nello sviluppo strategico e nella messa in opera di modelli gestionali di successo. Atleta di endurance, unisce visione manageriale e cultura sportiva anche nel ruolo di dirigente ASD, delegato FICSF e FISky e organizzatore di eventi.' }], abstract: 'Dimenticate i contanti: siamo nell’era della rivoluzione cashless, dove lo smartphone è il nuovo portafoglio e la Generazione Z detta le regole del gioco. Il fitness deve evolversi ora, trasformando i pagamenti digitali e ricorrenti in potenti strumenti di fidelizzazione per intercettare i nuovi desideri dei clienti. Non è solo tecnologia, è un cambio di mentalità totale: chi non adegua script di vendita e strategie commerciali a questa velocità rischia di restare invisibile.' },
       { id: 2, title: 'I numeri che contano', date: '28 maggio 2026', time: '11:30 – 12:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Palestre di Successo', speakers: [{ name: 'Claudio De Padua', role: 'Consulente Master, Palestre di Successo', bio: 'Imprenditore e gestore di centri fitness da oltre 20 anni. Durante gli studi in Ingegneria avvia il suo percorso nel settore partendo dalla reception, per poi crescere come consulente commerciale, club manager e infine titolare di tre palestre a Milano. Da circa quattro anni collabora attivamente con Palestre di Successo su progetti di marketing strategico e controllo di gestione per il settore fitness.' }], abstract: 'I parametri fondamentali del controllo di gestione per avere le redini della propria palestra e ottenere, in modo semplice e preciso, la fotografia del club. Un approccio pragmatico per misurare, analizzare e correggere l’andamento della struttura, trasformando i dati in decisioni operative.' },
-      { id: 3, title: "Il metodo corretto per implementare l'IA nella gestione del Fitness Club", date: '28 maggio 2026', time: '12:30 – 14:00', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'AI & Marketing', speakers: [{ name: 'Luca Ercolani', bio: 'Luca Ercolani è consulente digital marketing specializzato nel settore del fitness. Da circa 30 anni lavora nel mercato del fitness, inizialmente come istruttore fitness e successivamente come consulente digital marketing. Da più di 10 anni progetta e gestisce strategie e corsi di formazione in marketing digitale e intelligenza artificiale per fitness club, centri sportivi, organizzazioni ed aziende del fitness. Da anni partecipa come relatore ai principali eventi del fitness in Italia e all’estero riportando le sue analisi sul digital marketing applicate al settore fitness, sport e wellness. È anche molto attivo sul suo blog e sui suoi social media dove pubblica regolarmente contenuti riguardanti le ultime news di intelligenza artificiale, management, digital marketing e business in ambito fitness.' }, { name: 'Carmine Preziosi', role: 'Marketing Strategist', bio: 'Marketing strategist, consulente e formatore, laureato in Economia e Commercio con Master in Social Media Marketing. Da oltre vent’anni supporta aziende e professionisti nello sviluppo di strategie marketing e commerciali, in particolare nei settori fitness, wellness e medicale. È autore di manuali di marketing, docente e relatore in eventi nazionali e internazionali di settore.' }, { name: 'Maurizio Taruggi', bio: 'Imprenditore sportivo, proprietario dell\'Athlon Club di Roma e CEO di Ready 2 Digital, società di consulenza digitale. Laurea Magistrale in Economia e Direzione delle Imprese presso la LUISS di Roma, Master in International Marketing presso European School of Economics di New York e Master in Management dello Sport presso la Scuola dello Sport.' }], abstract: 'Il seminario sarà suddiviso in tre tappe sequenziali per guidare titolari e manager nell’integrazione dell’IA. Tre moduli propedeutici per trasformare l’innovazione tecnologica dell’Intelligenza Artificiale in una concreta leva strategica di profitto e operatività.\n\n1. Il Nuovo Mindset AI (Luca Ercolani) — L’IA non è un semplice software ma un cambio di paradigma culturale.\n\n2. Marketing Strategico e Acquisizione (Carmine Preziosi) — L’IA può potenziare il marketing del club e rendere la lead generation più scalabile e profittevole.\n\n3. Conversione e Vendita Automatizzata (Maurizio Taruggi) — CRM, WhatsApp e automazioni possono essere integrati per gestire volumi elevati di contatti e aumentare le conversioni.' },
-      { id: 4, title: 'Il fitness non basta più: entra nell’era della longevità', date: '28 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity', speakers: [{ name: 'Gianluca Scazzosi', bio: 'Gianluca Scazzosi si occupa di Fitness, Wellness e Sport dal 1988. È laureato in Scienze Motorie presso l’Università Cattolica di Milano e ha conseguito un BA con honors in International Business presso la Nottingham Trent University. È autore di due libri, “Marketing R-Evolution” e “Cinquanta per sempre”. Speaker internazionale e HFA Ambassador per l’Italia, partecipa come conferenziere a numerosi convegni nazionali e internazionali. È stato visiting professor presso la facoltà di Scienze Motorie dell’Università di Pavia e si occupa di consulenza e temporary management per aziende nazionali e internazionali.' }, { name: 'Carmine Preziosi', role: 'Marketing Strategist', bio: 'Marketing strategist, consulente e formatore, laureato in Economia e Commercio con Master in Social Media Marketing. Da oltre vent’anni supporta aziende e professionisti nello sviluppo di strategie marketing e commerciali, in particolare nei settori fitness, wellness e medicale. È autore di manuali di marketing, docente e relatore in eventi nazionali e internazionali di settore.' }], abstract: 'Il modello tradizionale del fitness mostra oggi limiti evidenti, mentre cresce la domanda di salute attiva e longevità. In questo seminario viene presentato un cambio di paradigma: trasformare la palestra in un centro di longevità, capace di attrarre il target over 50 e generare maggiore valore.\n\nGianluca Scazzosi e Carmine Preziosi illustreranno le leve strategiche per acquisire nuovi clienti, aumentare la retention e creare sostenibilità del business nel nuovo scenario del fitness.' },
-      { id: 5, title: 'Dal CRM all’iscrizione: come un agente AI gestisce i contatti al posto tuo', date: '28 maggio 2026', time: '15:30 – 16:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'AI & Sales', speakers: [{ name: 'Maurizio Taruggi', bio: 'Imprenditore sportivo, proprietario dell\'Athlon Club di Roma e CEO di Ready 2 Digital, società di consulenza digitale. Laurea Magistrale in Economia e Direzione delle Imprese presso la LUISS di Roma, Master in International Marketing presso European School of Economics di New York e Master in Management dello Sport presso la Scuola dello Sport.' }], abstract: 'Da titolare di un fitness center e fondatore di una società di consulenza digitale, Maurizio Taruggi racconta il problema reale che lo ha spinto a creare SuperAgent.fit: troppi lead, troppo poco tempo, troppe opportunità perse.\n\nIn questo intervento mostrerà come un agente AI verticale per il fitness possa gestire simultaneamente comunicazioni in entrata e in uscita, inviare messaggi massivi su WhatsApp, qualificare i contatti e alimentare un CRM, il tutto senza aumentare i costi del personale.\n\nNon teoria: dati, flussi e demo dal vivo.' },
-      { id: 6, title: 'Dalla prima iscrizione all’allenamento: come creare un’esperienza fluida e memorabile per l’utente del fitness', date: '28 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Team System', speakers: [{ name: 'Roberto Di Giacomo', role: 'Business Developer TeamSystem', bio: 'Business Developer TeamSystem, lavora sullo sviluppo di soluzioni digitali per il mondo sport, fitness e terzo settore. Si occupa di accompagnare palestre e centri sportivi nella semplificazione dei processi e nella creazione di esperienze utente fluide e ad alto valore, mettendo il cliente realmente al centro dell’ecosistema digitale.' }], abstract: 'Quando allenarsi è semplice, l’esperienza cresce e il business segue.\n\nOggi l’esperienza dell’utente in un centro fitness non si gioca solo sulla qualità delle attrezzature o dei trainer, ma sulla semplicità e continuità del percorso che vive, dal primo contatto fino all’allenamento in sala.\n\nIl digitale, se incontra processi ben progettati e persone preparate, può trasformare l’esperienza del cliente e diventare una leva concreta di crescita sostenibile per il business del fitness.' },
-      { id: 7, title: 'Lavoro di produzione: la differenza tra segreteria e consulenza', date: '29 maggio 2026', time: '10:30 – 11:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Palestre di Successo', speakers: [{ name: 'Gianna Di Pietro', role: 'Consulente Master, Palestre di Successo', bio: 'Gianna Di Pietro lavora da 15 anni nel settore fitness. Per dieci anni è stata consulente fitness in diverse catene sul territorio napoletano. Ha lavorato per oltre 6 anni con il metodo Palestre di Successo, riscontrando nella pratica benefici concreti.\n\nNel 2020 entra in Palestre di Successo come prima dipendente; due mesi dopo scoppia il Covid. Insieme al team decide di supportare attivamente i club, aiutandoli a superare la fase critica.\n\nOggi è consulente master per oltre 100 club in tutta Italia, coordina i consulenti PDS e segue direttamente i centri nell’implementazione del metodo.' }], abstract: 'L’intervento ha come obiettivo comprendere la differenza tra la classica segreteria in palestra e la figura del consulente fitness in un centro fitness nel 2026.\n\nQuali sono i benefici per un titolare che inserisce un consulente e come, attraverso il lavoro di produzione illustrato nel dettaglio, è possibile trasformare fino all’80% degli appuntamenti in fatturato aziendale, lasciando solo al 10% la casualità dei tour spontanei.' },
-      { id: 8, title: 'Power Penia e Longevity: il ruolo della forza muscolare nei modelli di prevenzione e nelle palestre della salute', date: '29 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity & Medical Fitness', speakers: [{ name: 'Luca Marin, Ft, PhD', role: 'Università di Pavia', bio: 'Responsabile scientifico del Laboratorio per la Riabilitazione e la Chirurgia Ortopedica (LAROS) e membro del Laboratorio di Attività Motoria Adattata (LAMA), Università di Pavia. Professore a contratto presso i Corsi di Laurea di Scienze Motorie e docente del Master EAP. Autore ed editor di 6 libri sul fitness e sull’attività motoria adattata.' }, { name: 'Dott. Michele Felisatti, MSc, PhD', role: 'Esercizio Vita Medical Fitness', bio: 'CEO e Co-Founder di Esercizio Vita Medical Fitness. Professore nei corsi di Laurea in Medicina e Chirurgia e Scienze Motorie dell’Università di Ferrara e docente Master EAP Università di Pavia. Vicepresidente A.I.S.E. e membro S.I.S.M.E.S. Autore ed editor di 3 libri e oltre 20 articoli scientifici sull’attività motoria adattata.' }], abstract: 'La fisiologica perdita di potenza muscolare correlata all’avanzare degli anni rappresenta un biomarcatore critico della longevità. Questo declino, più rapido e precoce rispetto alla perdita di massa muscolare, costituisce un importante predittore di cadute, disabilità e mortalità prematura.\n\nLe evidenze scientifiche e le linee guida internazionali riconoscono l’esercizio fisico, e in particolare l’allenamento della forza, come intervento efficace nella prevenzione primaria e secondaria delle malattie croniche, oltre che nel mantenimento della capacità funzionale lungo tutto l’arco della vita.\n\nIl workshop fornirà strumenti operativi e una dimostrazione pratica di protocolli ed esercizi specifici per il potenziamento funzionale della persona anziana.' },
-      { id: 9, title: 'Personalizzazione dell’allenamento e Longevity Economy: progettare centri fitness più profittevoli nell’era dei dati', date: '29 maggio 2026', time: '15:30 – 16:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity & Business', speakers: [{ name: 'Salvatore Picucci', role: 'Founder WTM – Wellness Management', bio: 'Salvatore Picucci è fondatore del metodo WTM – Ingegneria Strategica del Wellness Management. Da oltre 30 anni progetta strategie di sviluppo e modelli di business per centri fitness, wellness, longevity, beauty e hotel spa, supportando imprenditori e investitori nella creazione di sistemi profittevoli e scalabili.' }], abstract: 'Il settore fitness e wellness sta entrando in una nuova fase evolutiva: la personalizzazione basata sui dati, l’integrazione tra fitness, salute e longevità e l’utilizzo di tecnologie intelligenti stanno trasformando profondamente il modello di business dei club.\n\nDurante l’intervento verrà analizzato come i sistemi di allenamento personalizzato e automatizzato possano migliorare retention, valore del cliente e redditività dei centri fitness.\n\nVerranno presentati nuovi modelli di sviluppo per fitness club, spa e wellness destination orientati alla longevity economy.' },
-      { id: 10, title: 'Dai clienti agli MVP: come progettare crescita, retention e scalabilità nel fitness 2026', date: '29 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Les Mills', speakers: [{ name: 'Marco Meli', role: 'National Business Development Manager, Les Mills Italia', bio: 'National Business Development Manager per Les Mills Italia, collabora con i club italiani per ottimizzare le operazioni, esplorare nuove opportunità e rimanere all’avanguardia del mercato.' }], abstract: 'Il fitness cresce, ma i margini no. Perché?\n\nOggi il vero problema non è portare più clienti, ma creare quelli giusti: gli MVP (Most Valuable Participants), i membri che frequentano di più, restano più a lungo e fanno crescere davvero il business.\n\nPartendo dalle ricerche Les Mills su milioni di percorsi reali, vedremo cosa funziona oggi nei club e perché molti modelli non reggono più. Dalle mode alla costruzione di abitudini, fino a come rendere tutto replicabile e controllabile: dalla sala corsi alla sala pesi, dai sistemi come EGYM al pilotaggio manageriale con Heitz.\n\nPerché oggi non vince chi aggiunge servizi.\nVince chi costruisce un sistema che funziona davvero.' },
+      { id: 3, title: "Il metodo corretto per implementare l'IA nella gestione del Fitness Club", date: '28 maggio 2026', time: '12:30 – 14:00', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'AI & Marketing', speakers: [{ name: 'Luca Ercolani', bio: 'Luca Ercolani è consulente digital marketing specializzato nel settore del fitness. Da circa 30 anni lavora nel mercato del fitness, inizialmente come istruttore fitness e successivamente come consulente digital marketing. Da più di 10 anni progetta e gestisce strategie e corsi di formazione in marketing digitale e intelligenza artificiale per fitness club, centri sportivi, organizzazioni ed aziende del fitness. Da anni partecipa come relatore ai principali eventi del fitness in Italia e all’estero riportando le sue analisi sul digital marketing applicate al settore fitness, sport e wellness. È anche molto attivo sul suo blog e sui suoi social media dove pubblica regolarmente contenuti riguardanti le ultime news di intelligenza artificiale, management, digital marketing e business in ambito fitness.' }, { name: 'Carmine Preziosi', role: 'Marketing Strategist', bio: 'Marketing strategist, consulente e formatore, laureato in Economia e Commercio con Master in Social Media Marketing. Da oltre vent’anni supporta aziende e professionisti nello sviluppo di strategie marketing e commerciali, in particolare nei settori fitness, wellness e medicale. È autore di manuali di marketing, docente e relatore in eventi nazionali e internazionali di settore.' }, { name: 'Maurizio Taruggi', bio: 'Imprenditore sportivo, proprietario dell\\'Athlon Club di Roma e CEO di Ready 2 Digital, società di consulenza digitale. Laurea Magistrale in Economia e Direzione delle Imprese presso la LUISS di Roma, Master in International Marketing presso European School of Economics di New York e Master in Management dello Sport presso la Scuola dello Sport.' }], abstract: 'Il seminario sarà suddiviso in tre tappe sequenziali per guidare titolari e manager nell’integrazione dell’IA. Tre moduli propedeutici per trasformare l’innovazione tecnologica dell’Intelligenza Artificiale in una concreta leva strategica di profitto e operatività.\\n\\n1. Il Nuovo Mindset AI (Luca Ercolani) — L’IA non è un semplice software ma un cambio di paradigma culturale.\\n\\n2. Marketing Strategico e Acquisizione (Carmine Preziosi) — L’IA può potenziare il marketing del club e rendere la lead generation più scalabile e profittevole.\\n\\n3. Conversione e Vendita Automatizzata (Maurizio Taruggi) — CRM, WhatsApp e automazioni possono essere integrati per gestire volumi elevati di contatti e aumentare le conversioni.' },
+      { id: 4, title: 'Il fitness non basta più: entra nell’era della longevità', date: '28 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity', speakers: [{ name: 'Gianluca Scazzosi', bio: 'Gianluca Scazzosi si occupa di Fitness, Wellness e Sport dal 1988. È laureato in Scienze Motorie presso l’Università Cattolica di Milano e ha conseguito un BA con honors in International Business presso la Nottingham Trent University. È autore di due libri, “Marketing R-Evolution” e “Cinquanta per sempre”. Speaker internazionale e HFA Ambassador per l’Italia, partecipa come conferenziere a numerosi convegni nazionali e internazionali. È stato visiting professor presso la facoltà di Scienze Motorie dell’Università di Pavia e si occupa di consulenza e temporary management per aziende nazionali e internazionali.' }, { name: 'Carmine Preziosi', role: 'Marketing Strategist', bio: 'Marketing strategist, consulente e formatore, laureato in Economia e Commercio con Master in Social Media Marketing. Da oltre vent’anni supporta aziende e professionisti nello sviluppo di strategie marketing e commerciali, in particolare nei settori fitness, wellness e medicale. È autore di manuali di marketing, docente e relatore in eventi nazionali e internazionali di settore.' }], abstract: 'Il modello tradizionale del fitness mostra oggi limiti evidenti, mentre cresce la domanda di salute attiva e longevità. In questo seminario viene presentato un cambio di paradigma: trasformare la palestra in un centro di longevità, capace di attrarre il target over 50 e generare maggiore valore.\\n\\nGianluca Scazzosi e Carmine Preziosi illustreranno le leve strategiche per acquisire nuovi clienti, aumentare la retention e creare sostenibilità del business nel nuovo scenario del fitness.' },
+      { id: 5, title: 'Dal CRM all’iscrizione: come un agente AI gestisce i contatti al posto tuo', date: '28 maggio 2026', time: '15:30 – 16:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'AI & Sales', speakers: [{ name: 'Maurizio Taruggi', bio: 'Imprenditore sportivo, proprietario dell\\'Athlon Club di Roma e CEO di Ready 2 Digital, società di consulenza digitale. Laurea Magistrale in Economia e Direzione delle Imprese presso la LUISS di Roma, Master in International Marketing presso European School of Economics di New York e Master in Management dello Sport presso la Scuola dello Sport.' }], abstract: 'Da titolare di un fitness center e fondatore di una società di consulenza digitale, Maurizio Taruggi racconta il problema reale che lo ha spinto a creare SuperAgent.fit: troppi lead, troppo poco tempo, troppe opportunità perse.\\n\\nIn questo intervento mostrerà come un agente AI verticale per il fitness possa gestire simultaneamente comunicazioni in entrata e in uscita, inviare messaggi massivi su WhatsApp, qualificare i contatti e alimentare un CRM, il tutto senza aumentare i costi del personale.\\n\\nNon teoria: dati, flussi e demo dal vivo.' },
+      { id: 6, title: 'Dalla prima iscrizione all’allenamento: come creare un’esperienza fluida e memorabile per l’utente del fitness', date: '28 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Team System', speakers: [{ name: 'Roberto Di Giacomo', role: 'Business Developer TeamSystem', bio: 'Business Developer TeamSystem, lavora sullo sviluppo di soluzioni digitali per il mondo sport, fitness e terzo settore. Si occupa di accompagnare palestre e centri sportivi nella semplificazione dei processi e nella creazione di esperienze utente fluide e ad alto valore, mettendo il cliente realmente al centro dell’ecosistema digitale.' }], abstract: 'Quando allenarsi è semplice, l’esperienza cresce e il business segue.\\n\\nOggi l’esperienza dell’utente in un centro fitness non si gioca solo sulla qualità delle attrezzature o dei trainer, ma sulla semplicità e continuità del percorso che vive, dal primo contatto fino all’allenamento in sala.\\n\\nIl digitale, se incontra processi ben progettati e persone preparate, può trasformare l’esperienza del cliente e diventare una leva concreta di crescita sostenibile per il business del fitness.' },
+      { id: 7, title: 'Lavoro di produzione: la differenza tra segreteria e consulenza', date: '29 maggio 2026', time: '10:30 – 11:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Palestre di Successo', speakers: [{ name: 'Gianna Di Pietro', role: 'Consulente Master, Palestre di Successo', bio: 'Gianna Di Pietro lavora da 15 anni nel settore fitness. Per dieci anni è stata consulente fitness in diverse catene sul territorio napoletano. Ha lavorato per oltre 6 anni con il metodo Palestre di Successo, riscontrando nella pratica benefici concreti.\\n\\nNel 2020 entra in Palestre di Successo come prima dipendente; due mesi dopo scoppia il Covid. Insieme al team decide di supportare attivamente i club, aiutandoli a superare la fase critica.\\n\\nOggi è consulente master per oltre 100 club in tutta Italia, coordina i consulenti PDS e segue direttamente i centri nell’implementazione del metodo.' }], abstract: 'L’intervento ha come obiettivo comprendere la differenza tra la classica segreteria in palestra e la figura del consulente fitness in un centro fitness nel 2026.\\n\\nQuali sono i benefici per un titolare che inserisce un consulente e come, attraverso il lavoro di produzione illustrato nel dettaglio, è possibile trasformare fino all’80% degli appuntamenti in fatturato aziendale, lasciando solo al 10% la casualità dei tour spontanei.' },
+      { id: 8, title: 'Power Penia e Longevity: il ruolo della forza muscolare nei modelli di prevenzione e nelle palestre della salute', date: '29 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity & Medical Fitness', speakers: [{ name: 'Luca Marin, Ft, PhD', role: 'Università di Pavia', bio: 'Responsabile scientifico del Laboratorio per la Riabilitazione e la Chirurgia Ortopedica (LAROS) e membro del Laboratorio di Attività Motoria Adattata (LAMA), Università di Pavia. Professore a contratto presso i Corsi di Laurea di Scienze Motorie e docente del Master EAP. Autore ed editor di 6 libri sul fitness e sull’attività motoria adattata.' }, { name: 'Dott. Michele Felisatti, MSc, PhD', role: 'Esercizio Vita Medical Fitness', bio: 'CEO e Co-Founder di Esercizio Vita Medical Fitness. Professore nei corsi di Laurea in Medicina e Chirurgia e Scienze Motorie dell’Università di Ferrara e docente Master EAP Università di Pavia. Vicepresidente A.I.S.E. e membro S.I.S.M.E.S. Autore ed editor di 3 libri e oltre 20 articoli scientifici sull’attività motoria adattata.' }], abstract: 'La fisiologica perdita di potenza muscolare correlata all’avanzare degli anni rappresenta un biomarcatore critico della longevità. Questo declino, più rapido e precoce rispetto alla perdita di massa muscolare, costituisce un importante predittore di cadute, disabilità e mortalità prematura.\\n\\nLe evidenze scientifiche e le linee guida internazionali riconoscono l’esercizio fisico, e in particolare l’allenamento della forza, come intervento efficace nella prevenzione primaria e secondaria delle malattie croniche, oltre che nel mantenimento della capacità funzionale lungo tutto l’arco della vita.\\n\\nIl workshop fornirà strumenti operativi e una dimostrazione pratica di protocolli ed esercizi specifici per il potenziamento funzionale della persona anziana.' },
+      { id: 9, title: 'Personalizzazione dell’allenamento e Longevity Economy: progettare centri fitness più profittevoli nell’era dei dati', date: '29 maggio 2026', time: '15:30 – 16:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Longevity & Business', speakers: [{ name: 'Salvatore Picucci', role: 'Founder WTM – Wellness Management', bio: 'Salvatore Picucci è fondatore del metodo WTM – Ingegneria Strategica del Wellness Management. Da oltre 30 anni progetta strategie di sviluppo e modelli di business per centri fitness, wellness, longevity, beauty e hotel spa, supportando imprenditori e investitori nella creazione di sistemi profittevoli e scalabili.' }], abstract: 'Il settore fitness e wellness sta entrando in una nuova fase evolutiva: la personalizzazione basata sui dati, l’integrazione tra fitness, salute e longevità e l’utilizzo di tecnologie intelligenti stanno trasformando profondamente il modello di business dei club.\\n\\nDurante l’intervento verrà analizzato come i sistemi di allenamento personalizzato e automatizzato possano migliorare retention, valore del cliente e redditività dei centri fitness.\\n\\nVerranno presentati nuovi modelli di sviluppo per fitness club, spa e wellness destination orientati alla longevity economy.' },
+      { id: 10, title: 'Dai clienti agli MVP: come progettare crescita, retention e scalabilità nel fitness 2026', date: '29 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Les Mills', speakers: [{ name: 'Marco Meli', role: 'National Business Development Manager, Les Mills Italia', bio: 'National Business Development Manager per Les Mills Italia, collabora con i club italiani per ottimizzare le operazioni, esplorare nuove opportunità e rimanere all’avanguardia del mercato.' }], abstract: 'Il fitness cresce, ma i margini no. Perché?\\n\\nOggi il vero problema non è portare più clienti, ma creare quelli giusti: gli MVP (Most Valuable Participants), i membri che frequentano di più, restano più a lungo e fanno crescere davvero il business.\\n\\nPartendo dalle ricerche Les Mills su milioni di percorsi reali, vedremo cosa funziona oggi nei club e perché molti modelli non reggono più. Dalle mode alla costruzione di abitudini, fino a come rendere tutto replicabile e controllabile: dalla sala corsi alla sala pesi, dai sistemi come EGYM al pilotaggio manageriale con Heitz.\\n\\nPerché oggi non vince chi aggiunge servizi.\\nVince chi costruisce un sistema che funziona davvero.' },
       { id: 11, title: 'Cross Cardio Experience', subtitle: 'Il metodo che rivoluziona l’allenamento in sala fitness', date: '30 maggio 2026', time: '15:30 – 16:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Jairo Junior', role: 'Founder Cross Cardio', bio: 'Fitness Legend e laureato in Fisioterapia, è un’icona internazionale del fitness e presenter a Rimini Wellness dal 1999. Fondatore di Cross Cardio e Mobility, ha rivoluzionato l’allenamento in sala fitness con risultati concreti. Formatore di migliaia di trainer, collabora con brand globali ed è trainer Virgin Active.' }, { name: 'Daniele Magliola', role: 'Master Trainer', bio: 'Master Trainer laureato in Scienze Motorie e manager fitness, scopre Cross Cardio nel 2015 a Rimini Wellness. Da subito coinvolto nel progetto, diventa uno dei massimi esperti del metodo. Oggi forma trainer e diffonde il Cross Cardio in Italia e nel mondo.' }, { name: 'Simone Magliola', role: 'Presenter & Trainer', bio: 'Laureato in Scienze Motorie e imprenditore fitness, incontra Cross Cardio nel 2015 durante il lancio ufficiale. Colpisce per professionalità e viene subito integrato nel progetto. Dal 2016 è Presenter e Formatore, contribuendo alla crescita del metodo a livello internazionale.' }, { name: 'Enzo Ferrari', role: 'Maestro di Cultura Fisica', bio: 'Figura storica del bodybuilding italiano con oltre 40 anni di esperienza, è pluricampione IFBB e Maestro di Cultura Fisica. Formatore e mentore, ha dedicato la sua carriera allo sviluppo di forza e ipertrofia. Oggi trasmette il suo know-how formando trainer più competenti e consapevoli.' }], abstract: 'Un’esperienza formativa e pratica che porta sul palco il metodo Cross Cardio: un approccio rivoluzionario all’allenamento che integra mobilità, intensità e funzionalità per risultati concreti.' },
-      { id: 12, title: 'FunXtional Body Building: trasforma la tua sala pesi in un sistema che produce risultati e valore', date: '31 maggio 2026', time: '11:30 – 12:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Jairo Junior', role: 'Founder Cross Cardio', bio: 'Fitness Legend e laureato in Fisioterapia, è un’icona internazionale del fitness e presenter a Rimini Wellness dal 1999. Fondatore di Cross Cardio e Mobility, ha rivoluzionato l’allenamento in sala fitness con risultati concreti. Formatore di migliaia di trainer, collabora con brand globali ed è trainer Virgin Active.' }, { name: 'Daniele Magliola', role: 'Master Trainer', bio: 'Master Trainer laureato in Scienze Motorie e manager fitness, scopre Cross Cardio nel 2015 a Rimini Wellness. Da subito coinvolto nel progetto, diventa uno dei massimi esperti del metodo. Oggi forma trainer e diffonde il Cross Cardio in Italia e nel mondo.' }, { name: 'Simone Magliola', role: 'Presenter & Trainer', bio: 'Laureato in Scienze Motorie e imprenditore fitness, incontra Cross Cardio nel 2015 durante il lancio ufficiale. Dal 2016 è Presenter e Formatore, contribuendo alla crescita del metodo a livello internazionale.' }, { name: 'Enzo Ferrari', role: 'Maestro di Cultura Fisica', bio: 'Figura storica del bodybuilding italiano con oltre 40 anni di esperienza, è pluricampione IFBB e Maestro di Cultura Fisica. Formatore e mentore, ha dedicato la sua carriera allo sviluppo di forza e ipertrofia.' }], abstract: 'Oggi la sala pesi tradizionale fatica a coinvolgere, fidelizzare e generare reale valore per il cliente. Allenamenti ripetitivi, scarsa guida e poca struttura portano a risultati limitati e abbandono.\n\nIl FunXtional Body Building nasce per risolvere questo problema: un metodo evoluto che integra i principi del bodybuilding con la logica funzionale, creando sessioni strutturate, coinvolgenti e altamente efficaci.\n\nAttraverso una programmazione basata su stimoli neurali, meccanici e metabolici, il metodo permette di sviluppare forza, ipertrofia e controllo motorio utilizzando in modo strategico le macchine e gli attrezzi della sala pesi Matrix.\n\nIl risultato è un’esperienza di allenamento guidata, progressiva e replicabile, che aumenta la qualità del servizio, migliora la percezione del trainer e trasforma la sala pesi in un vero centro di performance.\n\nDurante il seminario verrà presentata l’applicazione concreta del metodo, seguita da una sessione pratica in sala in cui i partecipanti potranno testare direttamente l’efficacia del sistema utilizzando le attrezzature Matrix.\n\nPiù risultati per i clienti. Più valore per il tuo club.\nStrength is the new fit.' },
-      { id: 13, title: 'La riumanizzazione del fitness: camminata, corsa e ritorno alla natura umana', date: '30 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Correre Naturale', speakers: [{ name: 'Daniele Vecchioni', role: 'Founder Correre Naturale', bio: 'Fondatore di Correre Naturale, la più grande scuola di corsa e movimento naturale in Italia. Oltre 30.000 persone formate in più di 12 anni di attività, 3 libri pubblicati, Ironman finisher. Ex manager in Procter & Gamble e Prysmian, ha lasciato la carriera corporate per dedicarsi a una missione: riumanizzare il modo in cui le persone si muovono e migliorare la loro vita. Oggi affianca l’attività di formazione diretta con consulenze e workshop per realtà fitness, aziende e organizzazioni sportive.' }], abstract: 'Un talk che cambierà il modo in cui guardi il movimento umano.\n\nViviamo in un\'epoca in cui le persone cercano salute, performance e benessere, ma con un corpo che non è più pronto a muoversi secondo natura.\n\nNel mondo delle palestre, la vera sfida non è far allenare le persone, ma aiutarle a diventare esseri umani che possono allenarsi.\n\nScoprirai:\n- Perché camminare e correre nel modo corretto sono strumenti potenti di acquisizione clienti\n- Come creare percorsi di trasformazione reali che aumentano la retention\n- I 3 pilastri del benessere: Software, Hardware e Training\n- Il concetto di fitness umano e perché sta cambiando il settore\n\nIn un mercato saturo, vince chi si distingue con valore, autenticità ed esperienza.' },
+      { id: 12, title: 'FunXtional Body Building: trasforma la tua sala pesi in un sistema che produce risultati e valore', date: '31 maggio 2026', time: '11:30 – 12:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Jairo Junior', role: 'Founder Cross Cardio', bio: 'Fitness Legend e laureato in Fisioterapia, è un’icona internazionale del fitness e presenter a Rimini Wellness dal 1999. Fondatore di Cross Cardio e Mobility, ha rivoluzionato l’allenamento in sala fitness con risultati concreti. Formatore di migliaia di trainer, collabora con brand globali ed è trainer Virgin Active.' }, { name: 'Daniele Magliola', role: 'Master Trainer', bio: 'Master Trainer laureato in Scienze Motorie e manager fitness, scopre Cross Cardio nel 2015 a Rimini Wellness. Da subito coinvolto nel progetto, diventa uno dei massimi esperti del metodo. Oggi forma trainer e diffonde il Cross Cardio in Italia e nel mondo.' }, { name: 'Simone Magliola', role: 'Presenter & Trainer', bio: 'Laureato in Scienze Motorie e imprenditore fitness, incontra Cross Cardio nel 2015 durante il lancio ufficiale. Dal 2016 è Presenter e Formatore, contribuendo alla crescita del metodo a livello internazionale.' }, { name: 'Enzo Ferrari', role: 'Maestro di Cultura Fisica', bio: 'Figura storica del bodybuilding italiano con oltre 40 anni di esperienza, è pluricampione IFBB e Maestro di Cultura Fisica. Formatore e mentore, ha dedicato la sua carriera allo sviluppo di forza e ipertrofia.' }], abstract: 'Oggi la sala pesi tradizionale fatica a coinvolgere, fidelizzare e generare reale valore per il cliente. Allenamenti ripetitivi, scarsa guida e poca struttura portano a risultati limitati e abbandono.\\n\\nIl FunXtional Body Building nasce per risolvere questo problema: un metodo evoluto che integra i principi del bodybuilding con la logica funzionale, creando sessioni strutturate, coinvolgenti e altamente efficaci.\\n\\nAttraverso una programmazione basata su stimoli neurali, meccanici e metabolici, il metodo permette di sviluppare forza, ipertrofia e controllo motorio utilizzando in modo strategico le macchine e gli attrezzi della sala pesi Matrix.\\n\\nIl risultato è un’esperienza di allenamento guidata, progressiva e replicabile, che aumenta la qualità del servizio, migliora la percezione del trainer e trasforma la sala pesi in un vero centro di performance.\\n\\nDurante il seminario verrà presentata l’applicazione concreta del metodo, seguita da una sessione pratica in sala in cui i partecipanti potranno testare direttamente l’efficacia del sistema utilizzando le attrezzature Matrix.\\n\\nPiù risultati per i clienti. Più valore per il tuo club.\\nStrength is the new fit.' },
+      { id: 13, title: 'La riumanizzazione del fitness: camminata, corsa e ritorno alla natura umana', date: '30 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Correre Naturale', speakers: [{ name: 'Daniele Vecchioni', role: 'Founder Correre Naturale', bio: 'Fondatore di Correre Naturale, la più grande scuola di corsa e movimento naturale in Italia. Oltre 30.000 persone formate in più di 12 anni di attività, 3 libri pubblicati, Ironman finisher. Ex manager in Procter & Gamble e Prysmian, ha lasciato la carriera corporate per dedicarsi a una missione: riumanizzare il modo in cui le persone si muovono e migliorare la loro vita. Oggi affianca l’attività di formazione diretta con consulenze e workshop per realtà fitness, aziende e organizzazioni sportive.' }], abstract: 'Un talk che cambierà il modo in cui guardi il movimento umano.\\n\\nViviamo in un\\'epoca in cui le persone cercano salute, performance e benessere, ma con un corpo che non è più pronto a muoversi secondo natura.\\n\\nNel mondo delle palestre, la vera sfida non è far allenare le persone, ma aiutarle a diventare esseri umani che possono allenarsi.\\n\\nScoprirai:\\n- Perché camminare e correre nel modo corretto sono strumenti potenti di acquisizione clienti\\n- Come creare percorsi di trasformazione reali che aumentano la retention\\n- I 3 pilastri del benessere: Software, Hardware e Training\\n- Il concetto di fitness umano e perché sta cambiando il settore\\n\\nIn un mercato saturo, vince chi si distingue con valore, autenticità ed esperienza.' },
       { id: 14, title: 'Quadrante Inferiore: Anatomia descrittiva e funzionale – Squat e Leg Extension', date: '30 maggio 2026', time: '10:30 – 12:00', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Biomeccanica', speakers: [{ name: 'Giuseppe Zinno', role: 'Master Trainer', bio: 'Master Trainer, preparatore fisico e formatore. Si occupa di Resistance Training, biomeccanica e allenamento al femminile.' }, { name: 'Marco Montanino', role: 'Fisioterapista e Osteopata', bio: 'Dottore in Scienze Motorie, Fisioterapista, Osteopata D.O, specializzato in Posturologia Clinica e Sportiva. Si occupa di esercizio terapeutico, assessment biomeccanico e funzionale e return to play.' }, { name: 'Generoso Cristantelli', role: 'Preparatore Fisico', bio: 'Dottore in Scienze Motorie, Osteopata D.O e preparatore fisico. Si occupa di biomeccanica funzionale, allenamento ed osteopatia.' }], abstract: 'Seminario pratico dedicato all’analisi biomeccanica e funzionale del quadrante inferiore. Focus su squat e leg extension con approfondimenti su tecnica, attivazione muscolare e prevenzione degli infortuni. (Abstract in aggiornamento)' },
       { id: 15, title: 'Quadrante Superiore: Anatomia descrittiva e funzionale – Allenare Petto e Dorso', date: '30 maggio 2026', time: '12:00 – 13:30', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Biomeccanica', speakers: [{ name: 'Giuseppe Zinno', bio: 'Master Trainer, preparatore fisico e formatore. Si occupa di Resistance Training, biomeccanica e allenamento al femminile.' }, { name: 'Marco Montanino', bio: 'Dottore in Scienze Motorie, Fisioterapista, Osteopata D.O, specializzato in Posturologia Clinica e Sportiva. Si occupa di esercizio terapeutico, assessment biomeccanico e funzionale e return to play.' }, { name: 'Generoso Cristantelli', bio: 'Dottore in Scienze Motorie, Osteopata D.O e preparatore fisico. Si occupa di biomeccanica funzionale, allenamento ed osteopatia.' }], abstract: 'Approfondimento tecnico sull’allenamento del quadrante superiore con focus su petto e dorso. Analisi funzionale, biomeccanica e applicazioni pratiche per migliorare performance ed efficacia dell’allenamento. (Abstract in aggiornamento)' },
       { id: 16, title: 'Valorizza il tuo Cardio con Sprint 8GX', date: '30 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Cardio & Performance', speakers: [{ name: 'Marchesan', role: 'Relatore', bio: 'Informazioni in aggiornamento.' }], abstract: 'Seminario dedicato alle strategie per valorizzare l’area cardio e aumentare il coinvolgimento degli utenti attraverso protocolli ad alta intensità e soluzioni innovative come Sprint 8GX. (Abstract in aggiornamento)' }
@@ -703,6 +738,7 @@
       filtersEl.innerHTML = categories.map(category => `
         <button class="chip ${state.category === category ? 'active' : ''}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>
       `).join('');
+
       filtersEl.querySelectorAll('.chip').forEach(btn => {
         btn.addEventListener('click', () => {
           state.category = btn.dataset.category;
@@ -867,7 +903,9 @@
           <button class="btn btn-primary" id="modalAddBtn">Aggiungi alla registrazione</button>
         </div>
       `;
+
       modal.classList.add('open');
+
       document.getElementById('modalAddBtn').addEventListener('click', () => {
         addSeminar(id);
         modal.classList.remove('open');
@@ -929,7 +967,9 @@
         state.selectedSeminarIds = [];
         renderPicker();
         successAlert.style.display = 'block';
-        setTimeout(() => successAlert.style.display = 'none', 2500);
+        setTimeout(() => {
+          successAlert.style.display = 'none';
+        }, 2500);
       } catch (err) {
         console.error(err);
         alert('Invio non riuscito. Verifica URL Google Apps Script e riprova.');
@@ -947,6 +987,6 @@
     renderFilters();
     renderGrid();
     renderPicker();
-</script>
+  </script>
 </body>
 </html>
