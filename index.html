@@ -547,8 +547,21 @@
   bottom: 20px;
   right: 20px;
   z-index: 999;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);    
 }
+    
+    .form-note {
+  font-size: 13px;
+  color: var(--muted-2);
+  margin-top: 14px;
+  line-height: 1.4;
+}
+
+.form-note a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+    
   </style>
 </head>
 <body>
@@ -681,6 +694,11 @@ La registrazione si completa in fondo alla pagina.
     </label>
   </div>
 </div>
+
+<p class="form-note">
+  Hai bisogno di supporto o maggiori informazioni? Scrivici a 
+  <a href="mailto:matrixlab@jht.it">matrixlab@jht.it</a>
+</p>
 
 <button class="btn btn-primary" id="submitBtn" type="submit" disabled>Conferma iscrizione</button>
                   <div class="alert-success" id="successAlert" style="display:none;">Iscrizione registrata correttamente.</div>
