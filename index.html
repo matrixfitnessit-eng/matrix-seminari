@@ -208,6 +208,7 @@
     }
 
     .card {
+  position: relative;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 24px;
@@ -218,14 +219,33 @@
   flex-direction: column;
   min-height: 100%;
 }
-    
-    .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      flex: 1;
-    }
+
+.sold-out-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #c1121f;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  z-index: 3;
+}
+
+.card.sold-out {
+  opacity: .72;
+  border: 1px solid rgba(193,18,31,.45);
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
 
     .topline {
       display: flex;
@@ -737,7 +757,7 @@ La registrazione si completa in fondo alla pagina.
       { id: 12, title: 'Funxtional Body Building: quando il funzionale incontra il bodybuilding — la terza via che il trainer di oggi non può più ignorare', subtitle: 'Cross Cardio', date: '31 maggio 2026', time: '11:30 – 12:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Jairo Junior', role: 'Founder & CEO Cross Cardio | Fitness Legend | International Master Presenter', image: 'images/speakers/jairo.jpg', bio: 'Jairo Junior è una leggenda del fitness internazionale con oltre 35 anni di carriera e presenza in più di 40 paesi sui palchi più importanti. Creatore di 9 metodologie di allenamento diventate riferimenti in Italia ed Europa, guida oggi una community globale di oltre 2.000 trainer certificati.\n\nNato a Taubaté (Brasile) nel 1976, emerge giovanissimo nell’aerobica agonistica brasiliana. Nel 1997 viene invitato in Europa dalla FEAD di Barcellona, dando il via a una carriera internazionale in continua ascesa. Dal 1999 è presenza fissa a RiminiWellness. Nel 2007 si laurea in Fisioterapia all’Università di Catania, integrando competenze cliniche e pratica sul campo.\n\nHa sviluppato 9 format completi e scalabili tra cui Postural Fit, Capoeira Training, Cross Cardio, Mobility e Functional Bodybuilding. Cross Cardio ha introdotto un approccio HIIT cardiovascolare funzionale, mentre Mobility rappresenta un sistema evoluto di mobilità articolare basato su principi fisioterapici. Tutti i suoi metodi si distinguono per risultati misurabili, protocolli replicabili e struttura scalabile.\n\nDal 2013 è VT Trainer Virgin Active ed è stato ambassador per brand globali come Reebok, Adidas, Freddy, Jaked, Skechers e Vibram. Ha lavorato in numerosi paesi tra cui Italia, Spagna, Germania, Svizzera, Francia, USA e Arabia Saudita.\n\nOggi affianca club e aziende nello sviluppo di concept, nel riposizionamento dell’offerta e nella creazione di format ad alto valore percepito. Sul palco unisce scienza, performance e leadership, trasmettendo una visione concreta e distintiva del fitness.'}, { name: 'Daniele Magliola', role: 'Master Trainer', image: 'images/speakers/magliola-d.jpg', bio: 'Master Trainer laureato in Scienze Motorie e manager fitness, scopre Cross Cardio nel 2015 a Rimini Wellness. Da subito coinvolto nel progetto, diventa uno dei massimi esperti del metodo. Oggi forma trainer e diffonde il Cross Cardio in Italia e nel mondo.' }, { name: 'Simone Magliola', role: 'Presenter & Trainer', image: 'images/speakers/magliola.jpg', bio: 'Laureato in Scienze Motorie e imprenditore fitness, incontra Cross Cardio nel 2015 durante il lancio ufficiale. Dal 2016 è Presenter e Formatore, contribuendo alla crescita del metodo a livello internazionale.' }, { name: 'Enzo Ferrari', role: 'Maestro di Cultura Fisica', image: 'images/speakers/ferrari.jpg', bio: 'Figura storica del bodybuilding italiano con oltre 40 anni di esperienza, è pluricampione IFBB e Maestro di Cultura Fisica. Formatore e mentore, ha dedicato la sua carriera allo sviluppo di forza e ipertrofia.' }], abstract: 'Il mercato fitness è oggi diviso in due mondi che raramente dialogano: da un lato il funzionale, dall’altro il bodybuilding. Nel mezzo esiste però il pubblico più ampio, quello che cerca un corpo che funzioni davvero e che produca risultati visibili.\n\nNasce qui il FunXtional Body Building: non un’evoluzione del bodybuilding tradizionale, né una forma generica di allenamento funzionale, ma una terza via che integra qualità del movimento, controllo della contrazione muscolare, programmazione scientifica e risultati estetici misurabili.\n\nCon la direzione tecnica di Enzo Ferrari — Campione Europeo IFBB, Vice Campione del Mondo e Maestro di Cultura Fisica con oltre 40 anni di esperienza — scoprirai perché questa disciplina rappresenta oggi una concreta opportunità di posizionamento per il trainer.\n\nPer chi opera in sala corsi, è il modo più diretto per intercettare il pubblico della sala pesi senza cambiare contesto, ampliando il proprio target e differenziando la propria proposta professionale.\n\nConsigliato a trainer di sala corsi, personal trainer, istruttori di bodybuilding, preparatori atletici e appassionati di fitness.'},
       { id: 13, title: 'La riumanizzazione del fitness: camminata, corsa e ritorno alla natura umana per attrare, trasformare e fidelizzare i clienti', date: '30 maggio 2026', time: '14:30 – 15:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Daniele Vecchioni', role: 'Founder Correre Naturale', image: 'images/speakers/vecchioni.jpg', bio: 'Fondatore di Correre Naturale, la più grande scuola di corsa e movimento naturale in Italia. Oltre 30.000 persone formate in più di 12 anni di attività, 3 libri pubblicati, Ironman finisher. Ex manager in Procter & Gamble e Prysmian, ha lasciato la carriera corporate per dedicarsi a una missione: riumanizzare il modo in cui le persone si muovono e migliorare la loro vita. Oggi affianca l’attività di formazione diretta con consulenze e workshop per realtà fitness, aziende e organizzazioni sportive.' }], abstract: 'Un talk che cambierà il modo in cui guardi il movimento umano.\n\nViviamo in un\'epoca in cui le persone cercano salute, performance e benessere, ma con un corpo che non è più pronto a muoversi secondo natura.\n\nNel mondo delle palestre, la vera sfida non è far allenare le persone, ma aiutarle a diventare esseri umani che possono allenarsi.\n\nScoprirai:\n- Perché camminare e correre nel modo corretto sono strumenti potenti di acquisizione clienti\n- Come creare percorsi di trasformazione reali che aumentano la retention\n- I 3 pilastri del benessere: Software, Hardware e Training\n- Il concetto di fitness umano e perché sta cambiando il settore\n\nIn un mercato saturo, vince chi si distingue con valore, autenticità ed esperienza.' },
       { id: 14, title: 'Quadrante Inferiore: Anatomia descrittiva e funzionale – La Diade tra Squat e Leg Extension', date: '30 maggio 2026', time: '10:30 – 12:00', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Giuseppe Zinno', role: 'Master Trainer', image: 'images/speakers/zinno.jpg', bio: 'Master Trainer, preparatore fisico e formatore. Si occupa di Resistance Training, biomeccanica e allenamento al femminile.' }, { name: 'Marco Montanino', role: 'Fisioterapista e Osteopata', image: 'images/speakers/montanino.jpg', bio: 'Dottore in Scienze Motorie, Fisioterapista, Osteopata D.O, specializzato in Posturologia Clinica e Sportiva. Si occupa di esercizio terapeutico, assessment biomeccanico e funzionale e return to play.' }, { name: 'Generoso Cristantielli', role: 'Preparatore Fisico', image: 'images/speakers/cristantelli.jpg', bio: 'Dottore in Scienze Motorie, Osteopata D.O e preparatore fisico. Si occupa di biomeccanica funzionale, allenamento ed osteopatia.' }], abstract: 'Seminario pratico dedicato all’analisi biomeccanica e funzionale del quadrante inferiore. Focus su squat e leg extension con approfondimenti su tecnica, attivazione muscolare e prevenzione degli infortuni. (Abstract in aggiornamento)' },
-      { id: 15, title: 'Quadrante Superiore: Anatomia descrittiva e funzionale – Allenare Petto e Dorso', date: '30 maggio 2026', time: '12:00 – 13:30', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Giuseppe Zinno', image: 'images/speakers/zinno.jpg', bio: 'Master Trainer, preparatore fisico e formatore. Si occupa di Resistance Training, biomeccanica e allenamento al femminile.' }, { name: 'Marco Montanino', image: 'images/speakers/montanino.jpg', bio: 'Dottore in Scienze Motorie, Fisioterapista, Osteopata D.O, specializzato in Posturologia Clinica e Sportiva. Si occupa di esercizio terapeutico, assessment biomeccanico e funzionale e return to play.' }, { name: 'Generoso Cristantielli', image: 'images/speakers/cristantelli.jpg', bio: 'Dottore in Scienze Motorie, Osteopata D.O e preparatore fisico. Si occupa di biomeccanica funzionale, allenamento ed osteopatia.' }], abstract: 'Approfondimento tecnico sull’allenamento del quadrante superiore con focus su petto e dorso. Analisi funzionale, biomeccanica e applicazioni pratiche per migliorare performance ed efficacia dell’allenamento. (Abstract in aggiornamento)' },
+      { id: 15, title: 'Quadrante Superiore: Anatomia descrittiva e funzionale – Allenare Petto e Dorso', date: '30 maggio 2026', time: '12:00 – 13:30', soldOut: true, area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Training & Performance', speakers: [{ name: 'Giuseppe Zinno', image: 'images/speakers/zinno.jpg', bio: 'Master Trainer, preparatore fisico e formatore. Si occupa di Resistance Training, biomeccanica e allenamento al femminile.' }, { name: 'Marco Montanino', image: 'images/speakers/montanino.jpg', bio: 'Dottore in Scienze Motorie, Fisioterapista, Osteopata D.O, specializzato in Posturologia Clinica e Sportiva. Si occupa di esercizio terapeutico, assessment biomeccanico e funzionale e return to play.' }, { name: 'Generoso Cristantielli', image: 'images/speakers/cristantelli.jpg', bio: 'Dottore in Scienze Motorie, Osteopata D.O e preparatore fisico. Si occupa di biomeccanica funzionale, allenamento ed osteopatia.' }], abstract: 'Approfondimento tecnico sull’allenamento del quadrante superiore con focus su petto e dorso. Analisi funzionale, biomeccanica e applicazioni pratiche per migliorare performance ed efficacia dell’allenamento. (Abstract in aggiornamento)' },
       { id: 16, title: 'Valorizza il tuo Cardio con Sprint 8GX', date: '30 maggio 2026', time: '16:30 – 17:15', area: 'Stand Matrix - Educational Lounge - Pad. B1', category: 'Business, AI & Sales', speakers: [{ name: 'Giuseppe Marchesan', role: 'Relatore', image: 'images/speakers/marchesan.jpg', bio: 'Informazioni in aggiornamento.' }], abstract:'Nel panorama fitness attuale, il vero vantaggio competitivo non è offrire più allenamenti, ma offrire allenamenti che funzionano davvero.\n\nSprint 8GX è un protocollo strutturato e validato, basato sui principi dello Sprint Interval Training (SIT), sviluppato per garantire risultati concreti in tempi ridotti e facilmente replicabili all’interno di qualsiasi club.\n\nIntegrato direttamente nelle attrezzature Matrix, Sprint 8 consente di standardizzare l’esperienza di allenamento, eliminare la complessità operativa e offrire sessioni ad alta intensità guidate, sicure e misurabili.\n\nGrazie a un format preciso – sprint brevi ad altissima intensità alternati a recuperi attivi – il protocollo attiva tutti i sistemi energetici, stimola lo sviluppo muscolare e migliora la composizione corporea, generando benefici tangibili già nel breve periodo.\n\nDurante il seminario scoprirai:\n- perché un protocollo strutturato e guidato è oggi più efficace dei modelli tradizionali\n- come integrare Sprint 8 nel tuo club in modo semplice e scalabile\n- come trasformare l’area cardio in un’esperienza ad alto valore percepito\n- come utilizzare metriche e dati per aumentare engagement e retention\n\nSprint 8 non è solo un allenamento. È un sistema che combina scienza, tecnologia e semplicità operativa per portare risultati concreti ai clienti e valore reale al tuo business.'}
     ];
 
@@ -835,11 +855,17 @@ La registrazione si completa in fondo alla pagina.
             <div class="grid">
               ${items.map(seminar => `
                 <article class="card">
+                  <div class="grid">
+                  ${items.map(seminar => `
+                  <article class="card ${seminar.soldOut ? 'sold-out' : ''}">
+
+                  ${seminar.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
+
                   <div class="card-body">
-                    <div class="topline">
-                      <span class="badge">${escapeHtml(seminar.category)}</span>
-                      <span class="small muted">#${seminar.id}</span>
-                    </div>
+                <div class="topline">
+                <span class="badge">${escapeHtml(seminar.category)}</span>
+                <span class="small muted">#${seminar.id}</span>
+                </div>
                     <h3 class="seminar-title">${escapeHtml(seminar.title)}</h3>
                     ${seminar.subtitle ? `<p class="muted small">${escapeHtml(seminar.subtitle)}</p>` : ''}
                     <div class="meta-list">
@@ -923,13 +949,19 @@ La registrazione si completa in fondo alla pagina.
     }
 
     function toggleSeminarSelection(id) {
+
+  const seminar = seminars.find(s => String(s.id) === String(id));
+  if (seminar?.soldOut) return;
+
   const strId = String(id);
+
   if (state.selectedSeminarIds.includes(strId)) {
     state.selectedSeminarIds = state.selectedSeminarIds.filter(item => item !== strId);
   } else {
     state.selectedSeminarIds.push(strId);
   }
   renderPicker();
+}
   renderGrid();
 }
 
