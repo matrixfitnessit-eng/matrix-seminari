@@ -511,7 +511,6 @@
 
   h1 {
     white-space: normal;
-    @media (max-width: 720px)
   }
 }
 
@@ -833,75 +832,75 @@ La registrazione si completa in fondo alla pagina.
     }
 
     function renderGrid() {
-      const filtered = getFilteredSeminars();
-      document.getElementById('hero-count').textContent = `${filtered.length} seminari`;
+  const filtered = getFilteredSeminars();
+  document.getElementById('hero-count').textContent = `${filtered.length} seminari`;
 
-      const grouped = filtered.reduce((acc, seminar) => {
-        if (!acc[seminar.date]) acc[seminar.date] = [];
-        acc[seminar.date].push(seminar);
-        return acc;
-      }, {});
+  const grouped = filtered.reduce((acc, seminar) => {
+    if (!acc[seminar.date]) acc[seminar.date] = [];
+    acc[seminar.date].push(seminar);
+    return acc;
+  }, {});
 
-      const orderedDates = Object.keys(grouped).sort((a, b) => parseDay(a) - parseDay(b));
+  const orderedDates = Object.keys(grouped).sort((a, b) => parseDay(a) - parseDay(b));
 
-      gridEl.innerHTML = orderedDates.map(date => {
-        const items = grouped[date];
-        return `
-          <section class="day-section">
-            <div class="day-header">
-              <h2 class="day-title">${escapeHtml(date)}</h2>
-              <div class="day-count">${items.length} seminari</div>
-            </div>
-            <div class="grid">
-              ${items.map(seminar => `
-                <article class="card">
-                  <div class="grid">
-                  ${items.map(seminar => `
-                  <article class="card ${seminar.soldOut ? 'sold-out' : ''}">
+  gridEl.innerHTML = orderedDates.map(date => {
+    const items = grouped[date];
+    return `
+      <section class="day-section">
+        <div class="day-header">
+          <h2 class="day-title">${escapeHtml(date)}</h2>
+          <div class="day-count">${items.length} seminari</div>
+        </div>
+        <div class="grid">
+          ${items.map(seminar => `
+            <article class="card ${seminar.soldOut ? 'sold-out' : ''}">
+              ${seminar.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
 
-                  ${seminar.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
-
-                  <div class="card-body">
+              <div class="card-body">
                 <div class="topline">
-                <span class="badge">${escapeHtml(seminar.category)}</span>
-                <span class="small muted">#${seminar.id}</span>
+                  <span class="badge">${escapeHtml(seminar.category)}</span>
+                  <span class="small muted">#${seminar.id}</span>
                 </div>
-                    <h3 class="seminar-title">${escapeHtml(seminar.title)}</h3>
-                    ${seminar.subtitle ? `<p class="muted small">${escapeHtml(seminar.subtitle)}</p>` : ''}
-                    <div class="meta-list">
-                      <div>${escapeHtml(seminar.date)}</div>
-                      <div>${escapeHtml(seminar.time)}</div>
-                      <div>${escapeHtml(seminar.area)}</div>
-                      <div>${escapeHtml(seminar.speakers.map(s => s.name).join(', '))}</div>
-                    </div>
-                    <div class="abstract-preview">${escapeHtml(seminar.abstract)}</div>
-                    <div class="actions">
-                      <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
-                      <button
-                      class="btn btn-secondary ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'selected' : ''}"
-                      data-add="${seminar.id}">
-                      ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'Selezionato ✓' : 'Seleziona'}
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              `).join('')}
-            </div>
-          </section>
-        `;
-      }).join('');
 
-      gridEl.querySelectorAll('[data-details]').forEach(btn => {
-        btn.addEventListener('click', () => openModal(Number(btn.dataset.details)));
-      });
+                <h3 class="seminar-title">${escapeHtml(seminar.title)}</h3>
+                ${seminar.subtitle ? `<p class="muted small">${escapeHtml(seminar.subtitle)}</p>` : ''}
 
-      gridEl.querySelectorAll('[data-add]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    addSeminar(Number(btn.dataset.add));
+                <div class="meta-list">
+                  <div>${escapeHtml(seminar.date)}</div>
+                  <div>${escapeHtml(seminar.time)}</div>
+                  <div>${escapeHtml(seminar.area)}</div>
+                  <div>${escapeHtml(seminar.speakers.map(s => s.name).join(', '))}</div>
+                </div>
+
+                <div class="abstract-preview">${escapeHtml(seminar.abstract)}</div>
+
+                <div class="actions">
+                  <button class="btn btn-primary" data-details="${seminar.id}">Scopri di più</button>
+                  <button
+                    class="btn btn-secondary ${state.selectedSeminarIds.includes(String(seminar.id)) ? 'selected' : ''}"
+                    data-add="${seminar.id}"
+                    ${seminar.soldOut ? 'disabled' : ''}>
+                    ${seminar.soldOut ? 'Posti esauriti' : state.selectedSeminarIds.includes(String(seminar.id)) ? 'Selezionato ✓' : 'Seleziona'}
+                  </button>
+                </div>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  gridEl.querySelectorAll('[data-details]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(Number(btn.dataset.details)));
   });
-      });
-    
-    }
+
+  gridEl.querySelectorAll('[data-add]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      addSeminar(Number(btn.dataset.add));
+    });
+  });
+}
 
     function renderPicker() {
       const sorted = seminars.slice().sort((a, b) => {
@@ -961,11 +960,13 @@ La registrazione si completa in fondo alla pagina.
     state.selectedSeminarIds.push(strId);
   }
   renderPicker();
-}
   renderGrid();
 }
 
     function addSeminar(id) {
+  const seminar = seminars.find(s => String(s.id) === String(id));
+  if (seminar?.soldOut) return;
+
   const strId = String(id);
 
   if (state.selectedSeminarIds.includes(strId)) {
